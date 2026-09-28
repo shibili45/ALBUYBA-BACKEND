@@ -19,23 +19,23 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
     ENFORCE_AUTH: bool = True
     
-    CORS_ORIGINS: Union[str, List[str]] = "http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173"
+    CORS_ORIGINS: Union[str, List[str]] = os.getenv("CORS_ORIGINS","http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173").strip(",")
     PORT: int = 8000
     HOST: str = "0.0.0.0"
 
-    @field_validator("CORS_ORIGINS", mode="before")
-    @classmethod
-    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
-        # Fallback check if user entered CORS_ORIGIN or CORES_ORIGIN in Render
-        raw_val = (
-            v 
-            or os.getenv("CORS_ORIGINS")
-        )
-        if isinstance(raw_val, str) and not raw_val.startswith("["):
-            # Strip whitespace and trailing slashes from each origin
-            return [i.strip().rstrip("/") for i in raw_val.split(",") if i.strip()]
-        elif isinstance(raw_val, list):
-            return [str(i).strip().rstrip("/") for i in raw_val]
-        return ["*"]
+    # @field_validator("CORS_ORIGINS", mode="before")
+    # @classmethod
+    # def assemble_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
+    #     # Fallback check if user entered CORS_ORIGIN or CORES_ORIGIN in Render
+    #     raw_val = (
+    #         v 
+    #         or os.getenv("CORS_ORIGINS")
+    #     )
+    #     if isinstance(raw_val, str) and not raw_val.startswith("["):
+    #         # Strip whitespace and trailing slashes from each origin
+    #         return [i.strip().rstrip("/") for i in raw_val.split(",") if i.strip()]
+    #     elif isinstance(raw_val, list):
+    #         return [str(i).strip().rstrip("/") for i in raw_val]
+    #     return ["*"]
 
 settings = Settings()
