@@ -1,0 +1,170 @@
+==============================================================================
+
+AL-MANDI OPSDESK: ROOT .GITIGNORE
+
+==============================================================================
+
+------------------------------------------------------------------------------
+
+1. Environment Variables & Secret Keys (CRITICAL)
+
+------------------------------------------------------------------------------
+
+Never commit database credentials, JWT secret keys, or API tokens
+
+.env
+.env.*
+!.env.example
+*.env
+
+------------------------------------------------------------------------------
+
+2. Python & Backend (.venv, bytecode, caches)
+
+------------------------------------------------------------------------------
+
+Virtual Environments
+
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+Bytecode & Caches
+
+pycache/
+*.py[cod]
+*$py.class
+*.pyc
+
+Distribution & Package artifacts
+
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+Testing & Linting
+
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+Local databases (SQLite testing files)
+
+.db
+.sqlite3
+backend/.db
+backend/.sqlite3
+mandi_opsdesk.db
+
+------------------------------------------------------------------------------
+
+3. Node.js & Frontend (Vite / React)
+
+------------------------------------------------------------------------------
+
+Dependencies
+
+node_modules/
+frontend/node_modules/
+.pnp
+.pnp.js
+
+Build Outputs
+
+frontend/dist/
+frontend/dist-ssr/
+frontend/build/
+dist/
+
+NPM & Yarn debug logs
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+Vite runtime caches
+
+.vite/
+frontend/.vite/
+
+Local frontend environment overrides
+
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+frontend/.env.local
+frontend/.env.*.local
+
+------------------------------------------------------------------------------
+
+4. Database & Docker Volumes
+
+------------------------------------------------------------------------------
+
+pgdata/
+postgres-data/
+docker-compose.override.yml
+
+------------------------------------------------------------------------------
+
+5. OS & Editor Artifacts
+
+------------------------------------------------------------------------------
+
+Windows
+
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+macOS
+
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+Visual Studio Code
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+JetBrains (PyCharm, WebStorm)
+
+.idea/
+*.iws
+*.iml
+*.ipr
+
+General Logs
+
+logs/
+*.log
