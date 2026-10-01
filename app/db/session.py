@@ -2,11 +2,17 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 from app.core.config import settings
 
-connect_args = {"check_same_thread": False} if settings.DATABASE_URL.startswith("sqlite") else {}
+db_url = settings.DATABASE_URL
+
+# Safe connection parameters for Neon PostgreSQL
+connect_args = {}
+if "neon.tech" in db_url and "sslmode" not in db_url:
+    connect_args["sslmode"] = "require"
 
 engine = create_engine(
-    settings.DATABASE_URL,
+    db_url,
     pool_pre_ping=True,
+    pool_recycle=300,
     connect_args=connect_args
 )
 
